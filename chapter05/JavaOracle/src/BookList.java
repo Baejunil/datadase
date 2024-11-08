@@ -46,6 +46,9 @@ public class BookList {
 					)) {
 				System.out.println(rs.getInt(1));
 				System.out.println(rs.getString(2));
+				System.out.println(rs.getString(3));
+				System.out.println(rs.getInt(4));
+				System.out.println();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
