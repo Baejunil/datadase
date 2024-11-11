@@ -63,3 +63,22 @@ INSERT INTO trek VALUES ('Lovesick Girls', 305, 3);  -- BLACKPINK - Lovesick Gir
 INSERT INTO trek VALUES ('밤편지', 310, 4);  -- 아이유 - 밤편지
 INSERT INTO trek VALUES ('피 땀 눈물', 270, 5);  -- 방탄소년단 - 피 땀 눈물
 INSERT INTO trek VALUES ('DDU-DU DDU-DU', 320, 6);  -- BLACKPINK - DDU-DU DDU-DU
+
+--아티스트 정보를 모두 조회
+SELECT * FROM artist;
+--CD 정보를 모두 조회
+SELECT * FROM cd;
+--아티스트 이름과 그가 출반한 CD 타이틀 조회
+SELECT a.name AS artist_name, c.title AS cd_title
+FROM artist a
+JOIN cd c ON a.artist_id = c.artist_id;
+-- 가장 많은 CD를 출반한 아티스트의 이름을 조회
+SELECT name
+FROM (
+    SELECT a.name, COUNT(c.cd_id) AS cd_count
+    FROM artist a
+    JOIN cd c ON a.artist_id = c.artist_id
+    GROUP BY a.artist_id, a.name
+    ORDER BY cd_count DESC
+)
+WHERE ROWNUM = 1;
